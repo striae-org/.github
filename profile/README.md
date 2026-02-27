@@ -18,13 +18,17 @@ See and annotate comparison images on an interactive canvas area, with a dynamic
 
 Add notes, mark support levels, and record findings. Rest easy knowing every annotation is securely saved and instantly updated.
 
+## Authenticated Confirmations System
+
+Striae facilitates a digitally authenticated confirmation workflow, including read-only case review, reviewing examiner credentials, unique confirmation IDs, and cryptographically stamped confirmation files.
+
 ## Effortless PDF Reports
 
 Create detailed, timestamped PDF reports with one click. Your reports use custom filenames based on your case, and are always ready to download straight from the browser.
 
 ## Help & Support Anytime
 
-Access the User’s Guide, Support, Bug Reporting, Privacy Policy, Terms, and Security Policy from anywhere in the app, so help is always close at hand.
+Access Support, Bug Reporting, Privacy Policy, Terms, and Security Policy from anywhere in the app, so help is always close at hand.
 
 Striae is open-source and always improving—your feedback and feature ideas are welcome.
 
