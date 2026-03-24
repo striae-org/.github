@@ -1,51 +1,104 @@
-# Striae: A Firearms Examiner’s Comparison Companion
+# @striae-org/striae
 
-Striae is a modern web application designed to streamline and enhance the workflow of firearms examiners. Built with React, Remix, and Vite, Striae offers robust tools for case management, image annotation, and secure reporting—all in a clean, responsive interface.
+Striae is a cloud-native forensic annotation application for firearms identification, built with React Router and Cloudflare Workers.
 
-## Case Management Made Simple
+This npm package publishes the Striae application source and deployment scaffolding for teams that run their own Striae environment.
 
-Use the sidebar to switch between cases, organize files, and keep track of important notes—everything stays neatly on one screen.
+## Live Project
 
-Easily manage your profile and sign out whenever you need.
+- Application: [https://striae.app](https://striae.app)
+- Source repository: [https://github.com/striae-org/striae](https://github.com/striae-org/striae)
+- Releases: [https://github.com/striae-org/striae/releases](https://github.com/striae-org/striae/releases)
+- Security policy: [https://github.com/striae-org/striae/security/policy](https://github.com/striae-org/striae/security/policy)
 
-## Detailed Case View
+## What This Package Is
 
-Upload images, select which ones to annotate, and review essential info like case numbers and image details—all in one place.
+- A deployable source distribution of Striae app code.
+- A package that includes worker examples and example configuration files.
 
-## Dynamic Image Annotation
+## What This Package Is Not
 
-See and annotate comparison images on an interactive canvas area, with a dynamic toolbar that makes annotating your images easy.
+- Not a small client SDK.
+- Not a zero-config, ready-to-run desktop app.
 
-Add notes, mark support levels, and record findings. Rest easy knowing every annotation is securely saved and instantly updated.
+## npm Package, Installation, and Full Deployment
 
-## Authenticated Confirmations System
+**Striae Package Links**
 
-Striae facilitates a digitally authenticated confirmation workflow, including read-only case review, reviewing examiner credentials, unique confirmation IDs, and cryptographically stamped confirmation files.
+- npmjs: [https://www.npmjs.com/package/@striae-org/striae](https://www.npmjs.com/package/@striae-org/striae)
+- GitHub Packages: [https://github.com/orgs/striae-org/packages/npm/package/striae](https://github.com/orgs/striae-org/packages/npm/package/striae)
 
-## Effortless PDF Reports
+1) Install the latest package:
 
-Create detailed, timestamped PDF reports with one click. Your reports use custom filenames based on your case, and are always ready to download straight from the browser.
+```bash
+npm i @striae-org/striae
+```
 
-## Help & Support Anytime
+2) Copy the package scaffold into the project root
 
-Access Support, Bug Reporting, Privacy Policy, Terms, and Security Policy from anywhere in the app, so help is always close at hand.
+```bash
+cp -R node_modules/@striae-org/striae/. .
+```
 
-Striae is open-source and always improving—your feedback and feature ideas are welcome.
+3) Reinstall using Striae's own package.json (includes dev deps like wrangler/react-router)
 
-## Security & Privacy First
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
-Log in securely and manage your session with peace of mind.
+4) Prepare Firebase admin credentials (required before deploy-config can pass)
 
-Privacy and security policies are easy to find and always transparent. Your data is handled with care.
+```bash
+mkdir -p app/config
+cp -f app/config-example/admin-service.json app/config/admin-service.json
+```
 
-## Modern Tech Stack
+5) Replace `app/config/admin-service.json` with your actual Firebase service account JSON
 
-Built with React + Remix for speed and flexibility; Vite for fast development and builds; Cloudflare for global security and reliability; Tailwind CSS for a beautiful, responsive design.
+6) Authenticate Cloudflare CLI
 
-## Professional Visuals & Branding
+```bash
+npx wrangler login
+```
 
-Enjoy a clean, intuitive interface with custom icons and logos for a polished, professional look.
+7) Run guided config + full deployment
 
-## Why Choose Striae?
+```bash
+npm run deploy:all
+```
 
-Striae helps firearms examiners work smart—from managing cases and annotating images to producing professional reports with ease. It’s your trusted companion for clear, organized comparison work.
+## NPM Package Content Policy
+
+This package intentionally includes only non-sensitive defaults and runtime source needed for setup.
+
+Included:
+
+- `app/` source (with `app/config-example/`)
+- `functions/`, `public/`, `scripts/`
+- Worker package manifests
+- Worker source files except runtime entry files (`workers/*/src/*.ts` and excluding `workers/*/src/*worker.ts`)
+- Worker example Wrangler configs (`workers/*/wrangler.jsonc.example`)
+- Project-level example and build config (`.env.example`, `wrangler.toml.example`, `tsconfig.json`, etc.)
+
+Excluded (by design):
+
+- Real runtime config under `app/config/`
+- Real worker config files (for example `workers/*/wrangler.jsonc`)
+- Local secrets and machine-specific files
+- Extra repository metadata not required for npm consumers
+
+## Security Notes
+
+- Do not commit secrets to `app/config/`, `.env`, or worker config files.
+- Use only example files as templates and provide real values in your own private environment.
+- Review release notes for security updates before deployment.
+
+## License
+
+See `LICENSE` and `NOTICE`.
+
+## Support
+
+- Support page: [https://www.striae.org/support](https://www.striae.org/support)
+- Contact: [info@striae.org](mailto:info@striae.org)
